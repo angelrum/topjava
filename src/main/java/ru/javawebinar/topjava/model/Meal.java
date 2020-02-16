@@ -1,10 +1,12 @@
 package ru.javawebinar.topjava.model;
 
+import ru.javawebinar.topjava.util.MealsUtil;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Meal {
+public class Meal extends AbstractMeal {
     private final LocalDateTime dateTime;
 
     private final String description;
@@ -12,6 +14,7 @@ public class Meal {
     private final int calories;
 
     public Meal(LocalDateTime dateTime, String description, int calories) {
+        super(MealsUtil.createId());
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
@@ -36,4 +39,6 @@ public class Meal {
     public LocalTime getTime() {
         return dateTime.toLocalTime();
     }
+
+
 }
