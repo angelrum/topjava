@@ -21,8 +21,11 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if (action != null && action.equals("delete"))
+        if (action != null && action.equals("delete")) {
             remove(req);
+            resp.sendRedirect("meals");
+            return;
+        }
         else if (action != null && action.equals("update")) {
             int id = Integer.parseInt(req.getParameter("id"));
             MealTo mealUp = MealsUtil.getMealToList().stream().filter(m->m.getId()==id).findFirst().get();
@@ -30,7 +33,7 @@ public class MealServlet extends HttpServlet {
                 req.setAttribute("mealUp", mealUp);
         }
         req.setAttribute("meals", MealsUtil.getMealToList());
-        req.getRequestDispatcher("/meals.jsp").forward(req, resp);
+        req.getRequestDispatcher("meals.jsp").forward(req, resp);
     }
 
     @Override
