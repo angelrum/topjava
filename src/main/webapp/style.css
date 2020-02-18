@@ -1,0 +1,97 @@
+table {
+    padding: 10px;
+    margin: auto;
+}
+
+body {
+    margin: 0px;
+}
+
+th {
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+    color: darkblue;
+    background: #12e34d;
+    border-radius: 5px;
+    border: 1px solid darkgreen;
+}
+
+td {
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+}
+
+.white {
+    background: white;
+    border-radius: 10px;
+}
+
+.red {
+    color:red;
+    background: lightyellow;
+}
+
+.insert {
+    border: none;
+    position: relative;
+    left: 300px;
+}
+
+.block {
+    margin: auto;
+    width: 650px;
+    text-align: center;
+}
+
+.b-popup {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    text-align: center;
+
+}
+
+.b-popup-on {
+    display: none;
+}
+
+.b-popup .b-popup-content {
+    margin: 150px auto auto auto;
+    width: 600px;
+    height: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.button {
+    width: 150px;
+    height: 20px;
+    color: darkblue;
+    margin: 5px;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+
+}
+
+.in {
+    border: none;
+    height: 20px;
+    font-size: 14px;
+    width: 210px;
+}
+
+.in-num {
+    border: none;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    width: 90px;
+}
