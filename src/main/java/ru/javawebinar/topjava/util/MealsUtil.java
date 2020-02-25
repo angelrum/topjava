@@ -1,7 +1,7 @@
 package ru.javawebinar.topjava.util;
 
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.MealTo;
+import ru.javawebinar.topjava.to.MealTo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,8 +31,19 @@ public class MealsUtil {
         return filteredByStreams(meals, caloriesPerDay, meal -> true);
     }
 
-    public static List<MealTo> getFilteredTos(Collection<Meal> meals, int caloriesPerDay, LocalTime startTime, LocalTime endTime) {
-        return filteredByStreams(meals, caloriesPerDay, meal -> DateTimeUtil.isBetweenInclusive(meal.getTime(), startTime, endTime));
+    public static List<MealTo> getFilteredTosByTime(Collection<Meal> meals, int caloriesPerDay, LocalTime startTime, LocalTime endTime) {
+        return filteredByStreams(meals, caloriesPerDay, meal -> DateTimeUtil.isBetweenInclusiveTime(meal.getTime(), startTime, endTime));
+    }
+
+    public static List<MealTo> getFilteredTosByDate(Collection<Meal> meals, int caloriesPerDay, LocalDate startDate, LocalDate endDate) {
+        return filteredByStreams(meals, caloriesPerDay, meal -> DateTimeUtil.isBetweenInclusiveDate(meal.getDate(), startDate, endDate));
+    }
+
+    public static List<MealTo> getFilteredTosByDateTime(Collection<Meal> meals, int caloriesPerDay, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
+        return filteredByStreams(meals,
+                caloriesPerDay,
+                meal -> DateTimeUtil.isBetweenInclusiveTime(meal.getTime(), startTime, endTime)
+                        && DateTimeUtil.isBetweenInclusiveDate(meal.getDate(), startDate, endDate));
     }
 
     public static List<MealTo> filteredByStreams(Collection<Meal> meals, int caloriesPerDay, Predicate<Meal> filter) {
