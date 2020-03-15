@@ -14,6 +14,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class JdbcMealRepository implements MealRepository {
 
     @Override
     public List<Meal> getBetweenHalfOpen(LocalDateTime startDate, LocalDateTime endDate, int userId) {
-        return jdbcTemplate.query("select * from meals where ( date_time between ? and ? ) and user_id=? order by date_time DESC ",
+        return jdbcTemplate.query("select * from meals where date_time >= ? and date_time < ? and user_id=? order by date_time DESC ",
                 ROW_MAPPER, startDate, endDate, userId);
     }
 }

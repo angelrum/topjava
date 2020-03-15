@@ -26,7 +26,7 @@ public class MealTestData {
     public static int FIRST_MEAL_ID = START_SEQ + 2;
     public static Meal FIRST_MEAL = new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500);
     public static LocalDate START_DATE = LocalDate.of(2020, Month.JANUARY, 30);
-    public static LocalDate END_DATE = LocalDate.of(2020, Month.JANUARY, 31);
+    public static LocalDate END_DATE = LocalDate.of(2020, Month.JANUARY, 31).plusDays(1);
 
     public static Meal getNewMeal() {
         return new Meal(LocalDateTime.of(2020, Month.MARCH, 10, 10, 0), "Завтрак для теста", 1000);
