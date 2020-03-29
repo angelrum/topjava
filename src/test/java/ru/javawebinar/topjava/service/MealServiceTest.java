@@ -121,7 +121,7 @@ public class MealServiceTest {
     @Test
     public void updateNotFound() throws Exception {
         NotFoundException ex = Assert.assertThrows(NotFoundException.class,
-                () -> service.update(MEAL1, ADMIN_ID));
+                () -> service.update(MEAL1, 100001000)); //ADMIN_ID
         Assert.assertEquals("Not found entity with id=" + MEAL1_ID, ex.getMessage());
     }
 
