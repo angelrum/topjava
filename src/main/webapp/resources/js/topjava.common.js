@@ -13,18 +13,6 @@ function makeEditable(ctx) {
     $.ajaxSetup({cache: false});
 }
 
-function activeUser(id, val) {
-    $.get(
-        context.ajaxUrl,
-        {
-            "id": id,
-            "active" : val.checked
-        }
-    ).done(function () {
-        successNoty("Success update")
-    });
-}
-
 function delById(id) {
     if (confirm('Are you sure?')) {
         deleteRow(id);
@@ -49,16 +37,6 @@ function deleteRow(id) {
 function updateTable() {
     $.get(context.ajaxUrl, function (data) {
         updateTableRow(data);
-    });
-}
-
-function filter() {
-    var url = context.ajaxUrl + 'filter';
-    $.get(
-        url,
-        formFilter.serialize(),
-        function (data) {
-            updateTableRow(data);
     });
 }
 

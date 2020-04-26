@@ -40,3 +40,15 @@ $(function () {
         }
     );
 });
+
+function activeUser(id, val) {
+    $.get(
+        context.ajaxUrl,
+        {
+            "id": id,
+            "active" : val.checked
+        }
+    ).done(function () {
+        successNoty("Success update")
+    });
+}

@@ -33,3 +33,13 @@ $(function () {
         }
     );
 });
+
+function filter() {
+    var url = context.ajaxUrl + 'filter';
+    $.get(
+        url,
+        formFilter.serialize(),
+        function (data) {
+            updateTableRow(data);
+        });
+};
