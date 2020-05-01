@@ -2,6 +2,8 @@ package ru.javawebinar.topjava;
 
 import org.springframework.test.web.servlet.ResultMatcher;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

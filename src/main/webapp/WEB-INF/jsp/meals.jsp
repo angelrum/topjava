@@ -19,19 +19,19 @@
                     <div class="row">
                         <div class="col-3">
                             <label for="startDate"><spring:message code="meal.startDate"/></label>
-                            <input class="form-control" type="date" name="startDate" id="startDate">
+                            <input class="form-control" type="text" name="startDate" id="startDate">
                         </div>
                         <div class="col-3">
                             <label for="endDate"><spring:message code="meal.endDate"/></label>
-                            <input class="form-control" type="date" name="endDate" id="endDate">
+                            <input class="form-control" type="text" name="endDate" id="endDate">
                         </div>
                         <div class="offset-2 col-2">
                             <label for="startTime"><spring:message code="meal.startTime"/></label>
-                            <input class="form-control" type="time" name="startTime" id="startTime">
+                            <input class="form-control" type="text" name="startTime" id="startTime">
                         </div>
                         <div class="col-2">
                             <label for="endTime"><spring:message code="meal.endTime"/></label>
-                            <input class="form-control" type="time" name="endTime" id="endTime">
+                            <input class="form-control" type="text" name="endTime" id="endTime">
                         </div>
                     </div>
                 </form>
@@ -62,21 +62,21 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${meals}" var="meal">
-                <jsp:useBean id="meal" type="ru.javawebinar.topjava.to.MealTo"/>
-                <tr data-mealExcess="${meal.excess}">
-                    <td>
-                            <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
-                            <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
-                            <%--${fn:replace(meal.dateTime, 'T', ' ')}--%>
-                            ${fn:formatDateTime(meal.dateTime)}
-                    </td>
-                    <td>${meal.description}</td>
-                    <td>${meal.calories}</td>
-                    <td><a><span class="fa fa-pencil"></span></a></td>
-                    <td><a onclick="deleteRow(${meal.id})"><span class="fa fa-remove"></span></a></td>
-                </tr>
-            </c:forEach>
+<%--            <c:forEach items="${meals}" var="meal">--%>
+<%--                <jsp:useBean id="meal" type="ru.javawebinar.topjava.to.MealTo"/>--%>
+<%--                <tr data-mealExcess="${meal.excess}">--%>
+<%--                    <td>--%>
+<%--                            &lt;%&ndash;${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;<%=TimeUtil.toString(meal.getDateTime())%>&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;${fn:replace(meal.dateTime, 'T', ' ')}&ndash;%&gt;--%>
+<%--                            ${fn:formatDateTime(meal.dateTime)}--%>
+<%--                    </td>--%>
+<%--                    <td>${meal.description}</td>--%>
+<%--                    <td>${meal.calories}</td>--%>
+<%--                    <td><a><span class="fa fa-pencil"></span></a></td>--%>
+<%--                    <td><a onclick="deleteRow(${meal.id})"><span class="fa fa-remove"></span></a></td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
         </table>
     </div>
 </div>
@@ -126,4 +126,15 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<link rel="stylesheet" type="text/css" href="resources/css/jquery.datetimepicker.css"/>
+<script src="resources/js/jquery.js"></script>
+<script src="resources/js/jquery.datetimepicker.full.min.js"></script>
+<script src="resources/js/topjava.datetime.js"></script>
+<script type="text/javascript">
+    const i18n = [];
+    i18n["addTitle"] = '<spring:message code="meal.add"/>';
+    i18n["editTitle"] = '<spring:message code="meal.edit"/>';
+</script>
+
+<jsp:include page="fragments/commonBlock.jsp"/>
 </html>

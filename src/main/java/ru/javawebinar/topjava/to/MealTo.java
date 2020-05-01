@@ -1,21 +1,34 @@
 package ru.javawebinar.topjava.to;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.beans.ConstructorProperties;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class MealTo extends BaseTo {
+public class MealTo extends BaseTo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private final LocalDateTime dateTime;
 
+    @NotBlank
+    @Size(min = 2, max = 120)
     private final String description;
 
-    private final int calories;
+    @Positive
+    @NotNull
+    private final Integer calories;
 
-    private final boolean excess;
+    private final Boolean excess;
 
     @ConstructorProperties({"id", "dateTime", "description", "calories", "excess"})
-    public MealTo(Integer id, LocalDateTime dateTime, String description, int calories, boolean excess) {
+    public MealTo(Integer id, LocalDateTime dateTime, String description, Integer calories, Boolean excess) {
         super(id);
         this.dateTime = dateTime;
         this.description = description;
@@ -32,11 +45,11 @@ public class MealTo extends BaseTo {
     }
 
     public int getCalories() {
-        return calories;
+        return Objects.isNull(calories) ? 0 : calories;
     }
 
     public boolean isExcess() {
-        return excess;
+        return Objects.isNull(excess) ? false : excess;
     }
 
     @Override
@@ -44,8 +57,8 @@ public class MealTo extends BaseTo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MealTo that = (MealTo) o;
-        return calories == that.calories &&
-                excess == that.excess &&
+        return Objects.equals(calories, that.calories) &&
+                Objects.equals(excess, that.excess) &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(dateTime, that.dateTime) &&
                 Objects.equals(description, that.description);
