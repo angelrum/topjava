@@ -7,6 +7,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.javawebinar.topjava.View;
+import ru.javawebinar.topjava.View.ValidatedUI;
 import ru.javawebinar.topjava.util.DateTimeUtil;
 
 import javax.persistence.*;
