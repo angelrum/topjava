@@ -79,10 +79,21 @@ public class ValidationUtil {
     }
 
     public static ResponseEntity<String> getErrorResponse(BindingResult result) {
-        return ResponseEntity.unprocessableEntity().body(
-                result.getFieldErrors().stream()
-                        .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
-                        .collect(Collectors.joining("<br>"))
-        );
+        return ResponseEntity.unprocessableEntity().body(getErrorString(result));
     }
+
+    public static String getErrorString(BindingResult result) {
+        return result.getFieldErrors().stream()
+                .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
+                .collect(Collectors.joining("<br>"));
+    }
+
+    public static boolean checkDublicateEmail(Exception ex) {
+        return ex.getMessage().contains("users_unique_email_idx");
+    }
+
+    public static boolean checkDuplicateDatetime(Exception ex) {
+        return ex.getMessage().contains("meals_unique_user_datetime_idx");
+    }
+
 }

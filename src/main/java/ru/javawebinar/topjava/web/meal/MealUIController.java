@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.util.ValidationUtil;
+import ru.javawebinar.topjava.util.exception.IllegalRequestDataException;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ajax/profile/meals")
@@ -39,17 +41,21 @@ public class MealUIController extends AbstractMealController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid Meal meal, BindingResult result) {
-        if (result.hasErrors()) {
-            // TODO change to exception handler
-            return ValidationUtil.getErrorResponse(result);
-        }
+    @ResponseStatus(value = HttpStatus.OK)
+    public void createOrUpdate(@Valid Meal meal) {
+//        if (result.hasErrors()) {
+//            String collect = result.getFieldErrors().stream()
+//                    .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
+//                    .collect(Collectors.joining("<br>"));
+//            throw new IllegalRequestDataException(collect);
+//            //return ValidationUtil.getErrorResponse(result);
+//        }
         if (meal.isNew()) {
             super.create(meal);
         } else {
             super.update(meal, meal.getId());
         }
-        return ResponseEntity.ok().build();
+//        return ResponseEntity.ok().build();
     }
 
     @Override
