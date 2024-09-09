@@ -1,9 +1,11 @@
 package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.to.MealTo;
 
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 import java.util.List;
 
 import static java.time.LocalDateTime.of;
@@ -34,5 +36,16 @@ public class MealTestData {
 
     public static Meal getUpdated() {
         return new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+    }
+
+    public static List<Meal> convertTOtoObject(Collection<MealTo> mealTos) {
+        return mealTos
+                .stream()
+                .map(MealTestData::createMeal)
+                .toList();
+    }
+
+    private static Meal createMeal(MealTo mealTo) {
+        return new Meal(mealTo.getId(), mealTo.getDateTime(), mealTo.getDescription(), mealTo.getCalories());
     }
 }
