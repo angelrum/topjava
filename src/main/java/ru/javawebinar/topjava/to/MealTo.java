@@ -45,10 +45,10 @@ public class MealTo extends BaseTo {
         if (o == null || getClass() != o.getClass()) return false;
         MealTo mealTo = (MealTo) o;
         return calories == mealTo.calories &&
-                excess == mealTo.excess &&
-                Objects.equals(id, mealTo.id) &&
-                Objects.equals(dateTime, mealTo.dateTime) &&
-                Objects.equals(description, mealTo.description);
+               excess == mealTo.excess &&
+               Objects.equals(id, mealTo.id) &&
+               Objects.equals(dateTime, mealTo.dateTime) &&
+               Objects.equals(description, mealTo.description);
     }
 
     @Override
@@ -59,11 +59,11 @@ public class MealTo extends BaseTo {
     @Override
     public String toString() {
         return "MealTo{" +
-                "id=" + id +
-                ", dateTime=" + dateTime +
-                ", description='" + description + '\'' +
-                ", calories=" + calories +
-                ", excess=" + excess +
-                '}';
+               "id=" + id +
+               ", dateTime=" + dateTime +
+               ", description='" + description + '\'' +
+               ", calories=" + calories +
+               ", excess=" + excess +
+               '}';
     }
 }
